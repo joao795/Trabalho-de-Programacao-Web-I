@@ -78,9 +78,9 @@ export class FuncionarioComponent {
 
       let json = JSON.parse(dados);
 
+      document.getElementById('alerta')?.classList.remove('alert-danger');
       document.getElementById('alerta')?.classList.add('alert-success');
-
-      this.alerta = 'Status: ' + json.status + '\nMensagem: ' + json.mensagem;
+      this.alerta = json.status + ' - ' + json.mensagem;
 
     });
 
@@ -99,10 +99,16 @@ export class FuncionarioComponent {
 
         let json = JSON.parse(dados);
 
-        alert('Status: ' + json.status + '\nMensagem: ' + json.mensagem);
-
         if (json.status == 'Ok') {
+          document.getElementById('alerta')?.classList.remove('alert-danger');
+          document.getElementById('alerta')?.classList.add('alert-success');
+          this.alerta = json.status + ' - ' + json.mensagem;
           this.vetor.splice(pesquisaId, 1);
+        }
+        else {
+          document.getElementById('alerta')?.classList.remove('alert-success');
+          document.getElementById('alerta')?.classList.add('alert-danger');
+          this.alerta = json.status + ' - ' + json.mensagem;
         }
 
       })

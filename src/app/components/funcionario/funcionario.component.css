@@ -7,3 +7,9 @@ form {
 form input {
     margin-top: 10px;
 }
+
+.alerta {
+    margin: 30px auto;
+    width: 50%;
+    text-align: center;
+}
