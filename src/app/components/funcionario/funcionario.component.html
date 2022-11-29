@@ -9,12 +9,14 @@
     </nav>
 </header>
 
+<input type="text" class="alert" value="{{alerta}}">
+
 <form [formGroup]="formulario">
-    <input type="number" placeholder="ID do funcionário a alterar" formControlName="id" class="form-control">
-    <input type="text" placeholder="Nome" formControlName="nome" class="form-control">
-    <input type="text" placeholder="Departamento" formControlName="departamento" class="form-control">
-    <input type="text" placeholder="Endereço" formControlName="endereco" class="form-control">
-    <input type="text" placeholder="E-mail" formControlName="email" class="form-control">
+    <input type="number" placeholder="ID do funcionário a alterar" formControlName="id" class="form-control" value="{{id}}" readonly id="id">
+    <input type="text" placeholder="Nome" formControlName="nome" class="form-control" value="{{nome}}" id="nome">
+    <input type="text" placeholder="Departamento" formControlName="departamento" class="form-control" value="{{departamento}}" id="departamento">
+    <input type="text" placeholder="Endereço" formControlName="endereco" class="form-control" value="{{endereco}}" id="endereco">
+    <input type="text" placeholder="E-mail" formControlName="email" class="form-control" value="{{email}}" id="email">
     <input type="button" value="Submeter" (click)="alterar()" class="btn btn-success">
 </form>
 
@@ -36,7 +38,8 @@
             <td>{{v.departamento}}</td>
             <td>{{v.endereco}}</td>
             <td>{{v.email}}</td>
-            <td><button class="btn btn-danger" (click)="remover(v.id)">Remover</button></td>
+            <td><button class="btn btn-warning" (click)="selecionarFuncionario(v.id)">Editar</button></td>
+            <td><button class="btn btn-danger" (click)="remover(v.id)">Excluir</button></td>
         </tr>
     </tbody>
 </table>

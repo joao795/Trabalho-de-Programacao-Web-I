@@ -14,6 +14,14 @@ export class FuncionarioComponent {
 
   vetor:Funcionario[] = [];
 
+  id:number = 0;
+  nome:string = '';
+  departamento:string = '';
+  endereco:string = '';
+  email:string = '';
+
+  alerta:string = '';
+
   formulario = new FormGroup({
     id: new FormControl(),
     nome: new FormControl(),
@@ -23,7 +31,7 @@ export class FuncionarioComponent {
   });
 
   ngOnInit() {
-    this.selecionar();
+    this.selecionarTudo();
   }
 
   testarFormulario():void {
@@ -33,11 +41,30 @@ export class FuncionarioComponent {
   alterar():void {
     let f = new Funcionario;
 
+    if (this.formulario.value.id == null) {
+      this.formulario.value.id = this.id;
+    }
+    if (this.formulario.value.nome == null) {
+      this.formulario.value.nome = this.nome;
+    }
+    if (this.formulario.value.departamento == null) {
+      this.formulario.value.departamento = this.departamento;
+    }
+    if (this.formulario.value.endereco == null) {
+      this.formulario.value.endereco = this.endereco;
+    }
+    if (this.formulario.value.email == null) {
+      this.formulario.value.email = this.email;
+    }
+
     f.id = this.formulario.value.id;
     f.nome = this.formulario.value.nome;
     f.departamento = this.formulario.value.departamento;
     f.endereco = this.formulario.value.endereco;
     f.email = this.formulario.value.email;
+
+    console.log(f.id);
+    console.log(f.nome);
 
     this.servico.alterar(f.id, f)
     .subscribe(retorno => {
@@ -51,9 +78,10 @@ export class FuncionarioComponent {
 
       let json = JSON.parse(dados);
 
-      alert('Status: ' + json.status + '\nMensagem: ' + json.mensagem);
+      document.getElementById('alerta')?.classList.add('alert-success');
 
-      this.formulario.reset();
+      this.alerta = 'Status: ' + json.status + '\nMensagem: ' + json.mensagem;
+
     });
 
   }
@@ -83,11 +111,40 @@ export class FuncionarioComponent {
 
   }
 
-  selecionar():void {
+  selecionarTudo():void {
     this.servico.selecionar()
     .subscribe({
       next: retorno => this.vetor = retorno
     });
+  }
+
+  selecionarFuncionario(id:number):void {
+    let obj;
+
+    for (let i = 0; i < this.vetor.length; i++) {
+      if (this.vetor[i].id == id) {
+        obj = this.vetor[i];
+
+        this.id = obj.id;
+        this.nome = obj.nome;
+        this.departamento = obj.departamento;
+        this.endereco = obj.endereco;
+        this.email = obj.email;
+
+        this.formulario.value.id = this.id;
+        this.formulario.value.nome = this.nome;
+        this.formulario.value.departamento = this.departamento;
+        this.formulario.value.endereco = this.endereco;
+        this.formulario.value.email = this.email;
+
+        console.log(this);
+        console.log(this.formulario.value);
+
+        this.formulario.reset;
+        
+      }
+    }
+
   }
 
 }
