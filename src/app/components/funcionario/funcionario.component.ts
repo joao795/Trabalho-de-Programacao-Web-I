@@ -86,9 +86,17 @@ export class FuncionarioComponent {
 
       let json = JSON.parse(dados);
 
-      document.getElementById('alerta')?.classList.remove('alert-danger');
-      document.getElementById('alerta')?.classList.add('alert-success');
-      this.alerta = json.status + ' - ' + json.mensagem;
+      if (json.status == 'Ok') {
+        document.getElementById('alerta')?.classList.remove('alert-danger');
+        document.getElementById('alerta')?.classList.add('alert-success');
+        this.alerta = json.status + ' - ' + json.mensagem;
+      }
+      else {
+        document.getElementById('alerta')?.classList.remove('alert-success');
+        document.getElementById('alerta')?.classList.add('alert-danger');
+        this.alerta = json.status + ' - ' + json.mensagem;
+      }
+      
 
       this.formulario.reset;
 
