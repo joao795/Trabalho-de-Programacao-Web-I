@@ -68,11 +68,22 @@ export class FuncionarioComponent {
 
     this.servico.alterar(f.id, f)
     .subscribe(retorno => {
-      this.vetor[f.id - 1].id = f.id;
-      this.vetor[f.id - 1].nome = f.nome;
-      this.vetor[f.id - 1].departamento = f.departamento;
-      this.vetor[f.id - 1].endereco = f.endereco;
-      this.vetor[f.id - 1].email = f.email;
+      let obj;
+      
+      for (let i = 0; i < this.vetor.length; i++) {
+        if (this.vetor[i].id == f.id) {
+          obj = this.vetor[i];
+
+          obj.id = f.id;
+          obj.nome = f.nome;
+          obj.departamento = f.departamento;
+          obj.endereco = f.endereco;
+          obj.email = f.email;
+
+          break;
+
+        }
+      }
 
       let dados = JSON.stringify(retorno);
 
@@ -81,6 +92,8 @@ export class FuncionarioComponent {
       document.getElementById('alerta')?.classList.remove('alert-danger');
       document.getElementById('alerta')?.classList.add('alert-success');
       this.alerta = json.status + ' - ' + json.mensagem;
+
+      this.formulario.reset;
 
     });
 
