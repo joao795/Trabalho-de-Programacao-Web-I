@@ -63,9 +63,6 @@ export class FuncionarioComponent {
     f.endereco = this.formulario.value.endereco;
     f.email = this.formulario.value.email;
 
-    console.log(f.id);
-    console.log(f.nome);
-
     this.servico.alterar(f.id, f)
     .subscribe(retorno => {
       let obj;
@@ -101,7 +98,7 @@ export class FuncionarioComponent {
 
   remover(id:number):void {
 
-    let resposta = confirm('Você tem certeza de que quer remover esse funcionário? (●´⌓`●)')
+    let resposta = confirm('Você tem certeza de que quer remover esse funcionário? (●´⌓`●)');
 
     if (resposta) {
       this.servico.remover(id)
