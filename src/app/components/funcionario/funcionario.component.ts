@@ -89,15 +89,14 @@ export class FuncionarioComponent {
       if (json.status == 'Ok') {
         document.getElementById('alerta')?.classList.remove('alert-danger');
         document.getElementById('alerta')?.classList.add('alert-success');
-        this.alerta = json.status + ' - ' + json.mensagem;
+        this.alerta = json.mensagem;
       }
       else {
         document.getElementById('alerta')?.classList.remove('alert-success');
         document.getElementById('alerta')?.classList.add('alert-danger');
-        this.alerta = json.status + ' - ' + json.mensagem;
+        this.alerta = json.mensagem;
       }
       
-
       this.formulario.reset;
 
     });
@@ -120,13 +119,13 @@ export class FuncionarioComponent {
         if (json.status == 'Ok') {
           document.getElementById('alerta')?.classList.remove('alert-danger');
           document.getElementById('alerta')?.classList.add('alert-success');
-          this.alerta = json.status + ' - ' + json.mensagem;
+          this.alerta = json.mensagem;
           this.vetor.splice(pesquisaId, 1);
         }
         else {
           document.getElementById('alerta')?.classList.remove('alert-success');
           document.getElementById('alerta')?.classList.add('alert-danger');
-          this.alerta = json.status + ' - ' + json.mensagem;
+          this.alerta = json.mensagem;
         }
 
       })

@@ -12,7 +12,7 @@
 <h1 class="alerta alert" id="alerta">{{alerta}}</h1>
 
 <form [formGroup]="formulario">
-    <input type="number" placeholder="ID do funcionário a alterar" formControlName="id" class="form-control" value="{{id}}" readonly id="id">
+    <input type="hidden" placeholder="ID do funcionário a alterar" formControlName="id" class="form-control" value="{{id}}" id="id">
     <input type="text" placeholder="Nome" formControlName="nome" class="form-control" value="{{nome}}" id="nome">
     <input type="text" placeholder="Departamento" formControlName="departamento" class="form-control" value="{{departamento}}" id="departamento">
     <input type="text" placeholder="Endereço" formControlName="endereco" class="form-control" value="{{endereco}}" id="endereco">
@@ -20,29 +20,31 @@
     <input type="button" value="Submeter" (click)="alterar()" class="btn btn-success">
 </form>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Departamento</th>
-            <th>Endereço</th>
-            <th>E-mail</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let v of vetor">
-            <td>{{v.id}}</td>
-            <td>{{v.nome}}</td>
-            <td>{{v.departamento}}</td>
-            <td>{{v.endereco}}</td>
-            <td>{{v.email}}</td>
-            <td><button class="btn btn-warning" (click)="selecionarFuncionario(v.id)">Editar</button></td>
-            <td><button class="btn btn-danger" (click)="remover(v.id)">Excluir</button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Departamento</th>
+                <th>Endereço</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr *ngFor="let v of vetor">
+                <td>{{v.id}}</td>
+                <td>{{v.nome}}</td>
+                <td>{{v.departamento}}</td>
+                <td>{{v.endereco}}</td>
+                <td>{{v.email}}</td>
+                <td><button class="btn btn-warning" (click)="selecionarFuncionario(v.id)">Editar</button></td>
+                <td><button class="btn btn-danger" (click)="remover(v.id)">Excluir</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <footer>
     <nav class="navbar navbar-expand-lg bg-light">
